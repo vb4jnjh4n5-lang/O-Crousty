@@ -142,22 +142,34 @@
   .fine{margin-top:30px;padding-top:18px;border-top:1px solid rgba(255,247,230,.15);font-size:.78rem;color:rgba(255,247,230,.45);line-height:1.6}
   a:focus-visible,button:focus-visible,.tab:focus-visible{outline:3px solid var(--sesame);outline-offset:3px;border-radius:8px}
 
-  /* écran de chargement (pain kebab) */
-  #loader{position:fixed;inset:0;z-index:9999;background:var(--espresso);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;padding:24px}
-  #loader.hide{opacity:0;visibility:hidden;transition:opacity .5s ease,visibility .5s ease}
-  .pita{position:relative;width:180px;height:130px;filter:drop-shadow(0 14px 26px rgba(0,0,0,.45))}
-  .pita .half{position:absolute;left:0;right:0;width:100%;height:65px;background:radial-gradient(130% 150% at 32% 22%, #FCE6AC 0%, #F1BF63 55%, #DFA23F 100%)}
-  .pita .top{top:0;border-radius:130px 130px 16px 16px;transform-origin:50% 100%;box-shadow:inset 0 6px 10px rgba(255,255,255,.35);animation:pitaTop 1.9s cubic-bezier(.5,0,.15,1) forwards}
-  .pita .bottom{bottom:0;border-radius:16px 16px 130px 130px;transform-origin:50% 0%;box-shadow:inset 0 -6px 10px rgba(139,80,32,.35);animation:pitaBottom 1.9s cubic-bezier(.5,0,.15,1) forwards}
-  .pita .fill{position:absolute;left:14px;right:14px;top:50%;transform:translateY(-50%);height:22px;border-radius:22px;background:linear-gradient(90deg,#7d3417,#c05a26 25%,#4f7d33 50%,#c05a26 75%,#7d3417);opacity:0;animation:pitaFill 1.9s ease forwards}
-  @keyframes pitaTop{0%,22%{transform:translateY(0) rotate(0)}55%,100%{transform:translateY(-30px) rotate(-7deg)}}
-  @keyframes pitaBottom{0%,22%{transform:translateY(0) rotate(0)}55%,100%{transform:translateY(30px) rotate(7deg)}}
-  @keyframes pitaFill{0%,25%{opacity:0}60%,100%{opacity:1}}
-  .load-word{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.7rem;letter-spacing:-.02em;color:var(--cream);opacity:0;animation:loadWord 1.9s ease forwards}
-  .load-word span{color:var(--sesame)}
-  @keyframes loadWord{0%,45%{opacity:0;transform:translateY(8px)}80%,100%{opacity:1;transform:translateY(0)}}
-  .load-bar{width:120px;height:4px;border-radius:4px;background:rgba(255,247,230,.15);overflow:hidden}
-  .load-bar i{display:block;height:100%;width:0;background:var(--chili);animation:loadBar 1.9s ease forwards}
+  /* écran de chargement premium (pain kebab) */
+  #loader{position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at 50% 42%, #3a2317 0%, #20140E 62%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:30px;padding:24px;will-change:transform}
+  #loader.hide{transform:translateY(-100%);transition:transform .8s cubic-bezier(.76,0,.24,1)}
+  .loader-glow{position:absolute;width:440px;height:440px;max-width:90vw;max-height:90vw;border-radius:50%;background:radial-gradient(circle, rgba(231,154,34,.30), rgba(231,154,34,0) 70%);filter:blur(6px);animation:glowPulse 2.8s ease-in-out infinite}
+  .loader-stage{position:relative;display:grid;place-items:center}
+  .steam{position:absolute;top:-16px;left:50%;transform:translateX(-50%);width:80px;height:60px;pointer-events:none}
+  .steam i{position:absolute;bottom:0;width:6px;height:34px;border-radius:6px;background:linear-gradient(to top, rgba(255,247,230,.55), rgba(255,247,230,0));filter:blur(2px);opacity:0}
+  .steam i:nth-child(1){left:20px;animation:steam 2.4s ease-in-out 1.15s infinite}
+  .steam i:nth-child(2){left:38px;animation:steam 2.4s ease-in-out 1.4s infinite}
+  .steam i:nth-child(3){left:56px;animation:steam 2.4s ease-in-out 1.65s infinite}
+  @keyframes steam{0%{opacity:0;transform:translateY(6px) scaleY(.8)}40%{opacity:.7}100%{opacity:0;transform:translateY(-26px) scaleY(1.25)}}
+  .pita{position:relative;width:184px;height:132px;filter:drop-shadow(0 16px 30px rgba(0,0,0,.5))}
+  .pita .half{position:absolute;left:0;right:0;width:100%;height:66px;background:radial-gradient(ellipse 3px 2.2px at 26% 45%, rgba(122,74,32,.55) 55%, transparent 58%),radial-gradient(ellipse 3px 2.2px at 44% 62%, rgba(122,74,32,.5) 55%, transparent 58%),radial-gradient(ellipse 3px 2.2px at 62% 40%, rgba(122,74,32,.55) 55%, transparent 58%),radial-gradient(ellipse 3px 2.2px at 74% 58%, rgba(122,74,32,.5) 55%, transparent 58%),radial-gradient(ellipse 3px 2.2px at 35% 30%, rgba(122,74,32,.45) 55%, transparent 58%),radial-gradient(130% 150% at 32% 22%, #FCE6AC 0%, #F1BF63 55%, #DFA23F 100%)}
+  .pita .top{top:0;border-radius:130px 130px 16px 16px;transform-origin:50% 100%;box-shadow:inset 0 6px 12px rgba(255,255,255,.4);animation:pitaTop 2s cubic-bezier(.5,0,.15,1) .3s forwards}
+  .pita .bottom{bottom:0;border-radius:16px 16px 130px 130px;transform-origin:50% 0%;box-shadow:inset 0 -6px 12px rgba(139,80,32,.4);animation:pitaBottom 2s cubic-bezier(.5,0,.15,1) .3s forwards}
+  .pita .fill{position:absolute;left:14px;right:14px;top:50%;transform:translateY(-50%);height:24px;border-radius:24px;background:linear-gradient(90deg,#7d3417,#c05a26 22%,#4f7d33 48%,#d8a13a 62%,#c05a26 80%,#7d3417);box-shadow:0 2px 8px rgba(0,0,0,.3);opacity:0;animation:pitaFill 2s ease .3s forwards}
+  @keyframes pitaTop{0%,20%{transform:translateY(0) rotate(0)}55%,100%{transform:translateY(-32px) rotate(-7deg)}}
+  @keyframes pitaBottom{0%,20%{transform:translateY(0) rotate(0)}55%,100%{transform:translateY(32px) rotate(7deg)}}
+  @keyframes pitaFill{0%,24%{opacity:0}60%,100%{opacity:1}}
+  @keyframes glowPulse{0%,100%{transform:scale(.9);opacity:.55}50%{transform:scale(1.08);opacity:1}}
+  .loader-text{text-align:center}
+  .load-word{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:2rem;letter-spacing:-.02em;background:linear-gradient(100deg,#FFF7E6 0%,#FFE9B8 34%,#E79A22 50%,#FFE9B8 66%,#FFF7E6 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;opacity:0;animation:loadWord .8s ease .5s forwards, shimmer 2.6s linear .5s infinite}
+  @keyframes loadWord{from{opacity:0;transform:translateY(10px);letter-spacing:.12em}to{opacity:1;transform:translateY(0);letter-spacing:-.02em}}
+  @keyframes shimmer{to{background-position:-220% 0}}
+  .load-sub{margin-top:9px;font-family:'Figtree',sans-serif;font-weight:600;font-size:.78rem;letter-spacing:.34em;text-transform:uppercase;color:var(--sesame);opacity:0;animation:loadSub .8s ease .95s forwards}
+  @keyframes loadSub{from{opacity:0;transform:translateY(8px);letter-spacing:.55em}to{opacity:.92;transform:translateY(0);letter-spacing:.34em}}
+  .load-bar{width:140px;height:4px;border-radius:4px;background:rgba(255,247,230,.15);overflow:hidden}
+  .load-bar i{display:block;height:100%;width:0;border-radius:4px;background:linear-gradient(90deg,var(--chili),var(--sesame));box-shadow:0 0 10px rgba(231,154,34,.6);animation:loadBar 2.2s cubic-bezier(.4,0,.2,1) forwards}
   @keyframes loadBar{to{width:100%}}
 
   @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
@@ -166,12 +178,19 @@
 <body>
 
 <div id="loader" aria-hidden="true">
-  <div class="pita">
-    <div class="fill"></div>
-    <div class="half top"></div>
-    <div class="half bottom"></div>
+  <div class="loader-glow"></div>
+  <div class="loader-stage">
+    <div class="steam"><i></i><i></i><i></i></div>
+    <div class="pita">
+      <div class="fill"></div>
+      <div class="half top"></div>
+      <div class="half bottom"></div>
+    </div>
   </div>
-  <div class="load-word">O'<span>crousty</span></div>
+  <div class="loader-text">
+    <div class="load-word">O'crousty</div>
+    <div class="load-sub">Brétignolles-sur-Mer</div>
+  </div>
   <div class="load-bar"><i></i></div>
 </div>
 
@@ -449,8 +468,8 @@
       setTimeout(function () {
         loader.classList.add('hide');
         document.body.style.overflow = '';
-        setTimeout(function () { if (loader && loader.parentNode) loader.parentNode.removeChild(loader); }, 550);
-      }, reduce ? 250 : 2100);
+        setTimeout(function () { if (loader && loader.parentNode) loader.parentNode.removeChild(loader); }, 850);
+      }, reduce ? 250 : 2500);
     }
 
     // Onglets de la carte
