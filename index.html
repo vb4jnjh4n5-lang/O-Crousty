@@ -141,10 +141,39 @@
   .foot-links a:hover{color:var(--sesame)}
   .fine{margin-top:30px;padding-top:18px;border-top:1px solid rgba(255,247,230,.15);font-size:.78rem;color:rgba(255,247,230,.45);line-height:1.6}
   a:focus-visible,button:focus-visible,.tab:focus-visible{outline:3px solid var(--sesame);outline-offset:3px;border-radius:8px}
+
+  /* écran de chargement (pain kebab) */
+  #loader{position:fixed;inset:0;z-index:9999;background:var(--espresso);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;padding:24px}
+  #loader.hide{opacity:0;visibility:hidden;transition:opacity .5s ease,visibility .5s ease}
+  .pita{position:relative;width:180px;height:130px;filter:drop-shadow(0 14px 26px rgba(0,0,0,.45))}
+  .pita .half{position:absolute;left:0;right:0;width:100%;height:65px;background:radial-gradient(130% 150% at 32% 22%, #FCE6AC 0%, #F1BF63 55%, #DFA23F 100%)}
+  .pita .top{top:0;border-radius:130px 130px 16px 16px;transform-origin:50% 100%;box-shadow:inset 0 6px 10px rgba(255,255,255,.35);animation:pitaTop 1.9s cubic-bezier(.5,0,.15,1) forwards}
+  .pita .bottom{bottom:0;border-radius:16px 16px 130px 130px;transform-origin:50% 0%;box-shadow:inset 0 -6px 10px rgba(139,80,32,.35);animation:pitaBottom 1.9s cubic-bezier(.5,0,.15,1) forwards}
+  .pita .fill{position:absolute;left:14px;right:14px;top:50%;transform:translateY(-50%);height:22px;border-radius:22px;background:linear-gradient(90deg,#7d3417,#c05a26 25%,#4f7d33 50%,#c05a26 75%,#7d3417);opacity:0;animation:pitaFill 1.9s ease forwards}
+  @keyframes pitaTop{0%,22%{transform:translateY(0) rotate(0)}55%,100%{transform:translateY(-30px) rotate(-7deg)}}
+  @keyframes pitaBottom{0%,22%{transform:translateY(0) rotate(0)}55%,100%{transform:translateY(30px) rotate(7deg)}}
+  @keyframes pitaFill{0%,25%{opacity:0}60%,100%{opacity:1}}
+  .load-word{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.7rem;letter-spacing:-.02em;color:var(--cream);opacity:0;animation:loadWord 1.9s ease forwards}
+  .load-word span{color:var(--sesame)}
+  @keyframes loadWord{0%,45%{opacity:0;transform:translateY(8px)}80%,100%{opacity:1;transform:translateY(0)}}
+  .load-bar{width:120px;height:4px;border-radius:4px;background:rgba(255,247,230,.15);overflow:hidden}
+  .load-bar i{display:block;height:100%;width:0;background:var(--chili);animation:loadBar 1.9s ease forwards}
+  @keyframes loadBar{to{width:100%}}
+
   @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
 <body>
+
+<div id="loader" aria-hidden="true">
+  <div class="pita">
+    <div class="fill"></div>
+    <div class="half top"></div>
+    <div class="half bottom"></div>
+  </div>
+  <div class="load-word">O'<span>crousty</span></div>
+  <div class="load-bar"><i></i></div>
+</div>
 
 <header>
   <div class="wrap bar">
@@ -412,6 +441,19 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
+    // Écran de chargement : le pain s'ouvre puis on entre sur le site
+    var loader = document.getElementById('loader');
+    if (loader) {
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.body.style.overflow = 'hidden';
+      setTimeout(function () {
+        loader.classList.add('hide');
+        document.body.style.overflow = '';
+        setTimeout(function () { if (loader && loader.parentNode) loader.parentNode.removeChild(loader); }, 550);
+      }, reduce ? 250 : 2100);
+    }
+
+    // Onglets de la carte
     var tabs = document.querySelectorAll('.tab');
     var panels = document.querySelectorAll('.menu-panel');
     tabs.forEach(function (t) {
@@ -423,6 +465,7 @@
         if (panel) panel.classList.add('active');
       });
     });
+
     function goTo(id) {
       var el = document.getElementById(id);
       if (!el) return;
