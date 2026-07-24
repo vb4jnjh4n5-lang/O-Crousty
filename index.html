@@ -102,7 +102,8 @@
   .item .price{font-weight:700;font-size:1.05rem;white-space:nowrap;align-self:baseline}
   .item .row1{display:flex;align-items:baseline;gap:8px}
   .item .fill{flex:1;border-bottom:2px dotted var(--line);transform:translateY(-4px);min-width:16px}
-  .panel-note{background:rgba(226,50,18,.08);border:1.5px solid rgba(226,50,18,.25);color:var(--char);font-weight:600;font-size:.9rem;padding:10px 14px;border-radius:12px;margin-bottom:20px}
+  .panel-note{background:rgba(226,50,18,.08);border:1.5px solid rgba(226,50,18,.25);color:var(--char);font-weight:500;font-size:.88rem;line-height:1.65;padding:12px 16px;border-radius:12px;margin-bottom:20px}
+  .panel-note strong{color:var(--chili);font-weight:700}
   .grp{grid-column:1/-1;font-family:'Bricolage Grotesque';font-weight:700;font-size:1.05rem;color:var(--chili);text-transform:uppercase;letter-spacing:.04em;padding:18px 0 2px}
   .grp:first-child{padding-top:0}
   .also{margin-top:44px;background:var(--espresso);color:var(--cream);border-radius:20px;padding:28px 26px}
@@ -281,7 +282,12 @@
       </div>
 
       <div class="menu-panel" id="tacos" role="tabpanel">
-        <div class="panel-note">Choisis ta taille, tes viandes et tes sauces. Version gratinée (raclette, cheddar, chèvre ou mozza) : +2&nbsp;€ · en menu : +1&nbsp;€</div>
+        <div class="panel-note">
+          <strong>1. La taille</strong> · <strong>2. Les viandes</strong> : steak, greg, merguez, kefta, cordon bleu, nuggets, escalope, tenders, chicken curry<br>
+          <strong>3. Les sauces</strong> : mayo, fromagère, curry, ketchup, tartare, burger, algérienne, BBQ, blanche, samouraï, chili taï, moutarde, harissa, andalouse, poivre<br>
+          <strong>4. Les extras</strong> (+1&nbsp;€) : raclette, cheddar, chèvre, mozzarella, Vache qui rit, Boursin, champignons, jambon, œuf, sauce cheddar · bacon +1,50&nbsp;€<br>
+          Version gratinée (raclette, cheddar, chèvre ou mozza) : +2&nbsp;€ · en menu : +1&nbsp;€
+        </div>
         <div class="menu-grid">
           <div class="item"><div class="it-main"><div class="row1"><h3>Simple</h3><span class="fill"></span><span class="price">10,00&nbsp;€</span></div><p>1 viande au choix, frites et sauce fromagère.</p></div></div>
           <div class="item"><div class="it-main"><div class="row1"><h3>Double</h3><span class="mini">Le +&nbsp;aimé</span><span class="fill"></span><span class="price">12,00&nbsp;€</span></div><p>2 viandes au choix pour les grosses faims.</p></div></div>
@@ -360,10 +366,10 @@
       </div>
 
       <div class="menu-panel" id="panini" role="tabpanel">
-        <div class="panel-note">Au choix : kebab, escalope, chicken pané, saumon, jambon, viande hachée ou 3 fromages.</div>
+        <div class="panel-note">Garniture au choix : kebab, escalope, chicken pané, saumon, jambon, viande hachée ou 3 fromages. En menu (boisson 33cl) : +1&nbsp;€</div>
         <div class="menu-grid">
-          <div class="item"><div class="it-main"><div class="row1"><h3>Panini au choix</h3><span class="fill"></span><span class="price">5,00&nbsp;€</span></div><p>Une garniture au choix, pressé et croustillant.</p></div></div>
-          <div class="item"><div class="it-main"><div class="row1"><h3>Panini en menu</h3><span class="fill"></span><span class="price">7,50&nbsp;€</span></div><p>Panini + frites + boisson.</p></div></div>
+          <div class="item"><div class="it-main"><div class="row1"><h3>Panini au choix</h3><span class="fill"></span><span class="price">7,50&nbsp;€</span></div><p>Une garniture au choix, pressé et croustillant.</p></div></div>
+          <div class="item"><div class="it-main"><div class="row1"><h3>Panini Nutella</h3><span class="mini">Sucré</span><span class="fill"></span><span class="price">5,00&nbsp;€</span></div><p>Le panini dessert, généreusement garni au Nutella.</p></div></div>
         </div>
       </div>
 
@@ -384,7 +390,8 @@
       <div class="menu-panel" id="boissons" role="tabpanel">
         <div class="menu-grid">
           <div class="item"><div class="it-main"><div class="row1"><h3>Capri-Sun</h3><span class="fill"></span><span class="price">1,00&nbsp;€</span></div><p>La poche des enfants (et des grands).</p></div></div>
-          <div class="item"><div class="it-main"><div class="row1"><h3>Canette 33cl</h3><span class="fill"></span><span class="price">2,50&nbsp;€</span></div><p>Coca-Cola, Fanta…</p></div></div>
+          <div class="item"><div class="it-main"><div class="row1"><h3>Canette 33cl</h3><span class="fill"></span><span class="price">2,50&nbsp;€</span></div><p>Coca-Cola et autres sodas.</p></div></div>
+          <div class="item"><div class="it-main"><div class="row1"><h3>Fanta</h3><span class="fill"></span><span class="price">2,70&nbsp;€</span></div><p>Bouteille.</p></div></div>
           <div class="item"><div class="it-main"><div class="row1"><h3>Perrier</h3><span class="fill"></span><span class="price">2,00&nbsp;€</span></div><p>Eau gazeuse.</p></div></div>
           <div class="item"><div class="it-main"><div class="row1"><h3>Eau 50cl</h3><span class="fill"></span><span class="price">1,50&nbsp;€</span></div><p>Eau plate.</p></div></div>
           <div class="item"><div class="it-main"><div class="row1"><h3>Coca-Cola 1,5L</h3><span class="fill"></span><span class="price">3,50&nbsp;€</span></div><p>Format à partager.</p></div></div>
